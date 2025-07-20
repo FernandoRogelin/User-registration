@@ -17,12 +17,15 @@ export default defineConfig([
       globals: {
         ...globals.browser,
       },
+      rules: {
+        'vue/multi-word-component-names': 'off',
+      }
     },
   },
 
   js.configs.recommended,
   ...pluginVue.configs['flat/essential'],
-  
+
   {
     ...pluginVitest.configs.recommended,
     files: ['src/**/__tests__/*'],
