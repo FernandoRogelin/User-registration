@@ -1,0 +1,24 @@
+{
+  "name": "user-registration",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "npm run build:web && npm run dev:server",
+    "dev:web": "npm run dev --prefix web",
+    "dev:server": "npm run dev --prefix server",
+    "build:web": "npm run build --prefix web"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FernandoRogelin/User-registration.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FernandoRogelin/User-registration/issues"
+  },
+  "homepage": "https://github.com/FernandoRogelin/User-registration#readme"
+}
