@@ -1,5 +1,10 @@
 {
   "explorer.fileNesting.enabled": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.codeactiononsave": {
+    "source.fixAll.eslint": "explicit",
+  },
   "explorer.fileNesting.patterns": {
     "tsconfig.json": "tsconfig.*.json, env.d.ts",
     "vite.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*",
