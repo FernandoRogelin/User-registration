@@ -1,58 +1,60 @@
 <script setup>
-import { reactive, computed } from 'vue'
+import { ref, computed } from 'vue'
+import { useForm } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
+
+import { registrationSchema, initialValues } from '@/schemas/registrationSchema'
+
+import { FIRST_STEP, LAST_STEP } from '@/constants/steps'
 
 import Footer from '@/components/common/AppFooter.vue'
 import Header from '@/components/common/AppHeader.vue'
 
-const formState = reactive({
-  currentStep: 1,
-  data: {
-    // Step 1
-    email: '',
-    personType: '',
+import Welcome from '@/layouts/Welcome.vue'
 
-    // Step 2
-    name: '',
-    cpf: '',
-    birthdate: '',
+const currentStep = ref(FIRST_STEP)
 
-    phone: '',
-
-    // Step 2
-    companyName: '',
-    cnpj: '',
-    openingDate: '',
-
-    // Step 3
-    password: '',
-  }
+const { values, handleSubmit, validate } = useForm({
+  validationSchema: toTypedSchema(registrationSchema),
+  initialValues,
+  validateOnChange: true,
+  validateOnBlur: true,
+  validateOnMount: false,
 })
 
-const isCompany = computed(() => formState.data.personType === 'company' || false)
+const isCompany = computed(() => values.personType === 'company' || false)
 
 function nextStep() {
-  if (formState.currentStep < 4) formState.currentStep++
+  if (currentStep.value < LAST_STEP) currentStep.value++
 }
 
 function prevStep() {
-  if (formState.currentStep > 1) formState.currentStep--
+  if (currentStep.value > FIRST_STEP) currentStep.value--
 }
+
+const submitForm = handleSubmit(async formData => {
+  console.log('Campos válidos', formData)
+})
 </script>
 
 <template>
   <main class="app-main">
-    <Header :step="formState.currentStep" :isCompany="isCompany" />
+    <Header :step="currentStep" :isCompany="isCompany" />
 
-    <div class="app-main__content">
-      <article>centro do formulário</article>
+    <form @submit.prevent="submitForm">
+      <div class="app-main-content">
+        <article class="app-main-content__wrapper">
+          <Welcome v-show="currentStep === FIRST_STEP" />
+        </article>
 
-      <Footer
-        :nextStep="nextStep"
-        :prevStep="prevStep"
-        :step="formState.currentStep"
-        @submit="console.log('cadastrando')"
-      />
-    </div>
+        <Footer
+          :nextStep="nextStep"
+          :prevStep="prevStep"
+          :step="currentStep"
+          :validate="validate"
+        />
+      </div>
+    </form>
   </main>
 </template>
 
@@ -62,8 +64,12 @@ function prevStep() {
   max-width: 260px;
   padding-top: 2rem;
 
-  &__content {
+  &-content {
     width: 80%;
+
+    &__wrapper {
+      margin: 1.2rem 0 0.8rem;
+    }
   }
 }
 </style>

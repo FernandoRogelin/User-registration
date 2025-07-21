@@ -1,6 +1,8 @@
 <script setup>
 import { computed } from 'vue'
 
+import { FIRST_STEP, LAST_STEP } from '@/constants/steps'
+
 import Button from '@/components/ui/Button.vue'
 
 const props = defineProps({
@@ -15,21 +17,31 @@ const props = defineProps({
   prevStep: {
     type: Function,
     required: true
+  },
+  validate: {
+    type: Function,
+    required: true
   }
 })
 
 const emit = defineEmits(['submit'])
 
-const isLastStep = computed(() => props.step === 4 || false)
+const isLastStep = computed(() => props.step === LAST_STEP || false)
+
+async function onNextStep() {
+  const { valid } = await props.validate()
+
+  if (valid) isLastStep.value ? emit('submit') : props.nextStep()
+}
 </script>
 
 <template>
   <footer class="components-common-app-footer">
-    <Button v-if="step > 1" variant="secondary" @click="prevStep">
+    <Button type="button" v-if="step > FIRST_STEP" variant="secondary" @click="prevStep">
       Voltar
     </Button>
 
-    <Button @click="isLastStep ? emit('submit') : nextStep()">
+    <Button :type="isLastStep ? 'submit' : 'button'" @click="onNextStep">
       {{ isLastStep ? 'Cadastrar' : 'Continuar' }}
     </Button>
   </footer>

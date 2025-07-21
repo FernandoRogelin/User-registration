@@ -11,7 +11,10 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
-    "vue": "^3.5.17"
+    "@vee-validate/zod": "^4.15.1",
+    "vee-validate": "^4.15.1",
+    "vue": "^3.5.17",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
