@@ -7,9 +7,9 @@ const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 
-app.use('/register', express.static(fileURLToPath(new URL('../web/dist', import.meta.url))))
+app.use('/registration', express.static(fileURLToPath(new URL('../web/dist', import.meta.url))))
 
-app.get('', (req, res) => res.redirect('/register'))
+app.get('', (req, res) => res.redirect('/registration'))
 
 app.post('/registration', (req, res) => {
   const { email, password } = req.body

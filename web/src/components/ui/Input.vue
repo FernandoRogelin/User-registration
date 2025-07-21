@@ -19,16 +19,16 @@ defineProps({
 
 <template>
   <div class="components-ui-input">
-    <label v-if="label" :for="name" class="components-ui-input__label">{{ label }}</label>
-    <Field :name="name" :type="type" :id="name" class="components-ui-input__field" />
-    <ErrorMessage :name="name" as="div" class="components-ui-input__error" />
+    <label>
+      <span v-if="label" class="components-ui-input__label">{{ label }}</span>
+      <Field :name="name" :type="type" :id="name" class="components-ui-input__field" />
+      <ErrorMessage :name="name" as="div" class="components-ui-input__error" />
+    </label>
   </div>
 </template>
 
 <style scoped lang="scss">
 .components-ui-input {
-  margin-bottom: 0.6rem;
-
   &__label {
     font-weight: 600;
     font-size: 0.8rem;
