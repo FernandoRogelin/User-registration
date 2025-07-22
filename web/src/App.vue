@@ -8,6 +8,7 @@ import { registrationSchema, initialValues } from '@/schemas/registrationSchema'
 
 import { FIRST_STEP, LAST_STEP, SECOND_STEP, THIRD_STEP } from '@/constants/steps'
 
+import Response from '@/components/common/Response.vue'
 import Footer from '@/components/common/AppFooter.vue'
 import Header from '@/components/common/AppHeader.vue'
 
@@ -18,7 +19,7 @@ import Password from '@/layouts/Password.vue'
 import Review from '@/layouts/Review.vue'
 
 const currentStep = ref(FIRST_STEP)
-const { registration } = useRegistration()
+const { registration, response } = useRegistration()
 
 const { values, handleSubmit, validateField } = useForm({
   validationSchema: toTypedSchema(registrationSchema),
@@ -64,6 +65,8 @@ const submitForm = handleSubmit(async formData => await registration(formData))
         />
       </div>
     </form>
+
+    <Response v-if="response" :response="response" />
   </main>
 </template>
 

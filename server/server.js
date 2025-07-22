@@ -17,9 +17,9 @@ app.get('', (req, res) => res.redirect('/registration'))
 app.post('/registration', (req, res) => {
   const { email, password } = req.body
 
-  if (!email) return res.status(400).json({ message: 'E-mail obrigatório!' })
+  if (!email) return res.status(400).json({ error: 'E-mail obrigatório!' })
 
-  if (!password) return res.status(400).json({ message: 'Senha obrigatória!' })
+  if (!password) return res.status(400).json({ error: 'Senha obrigatória!' })
 
   res.status(200).json({ message: 'Cadastro realizado com sucesso!' })
 })
