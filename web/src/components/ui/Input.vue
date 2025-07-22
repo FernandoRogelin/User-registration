@@ -19,9 +19,11 @@ defineProps({
 
 <template>
   <div class="components-ui-input">
-    <label v-if="label" :for="name" class="components-ui-input__label">{{ label }}</label>
-    <Field :name="name" :type="type" :id="name" class="components-ui-input__field" />
-    <ErrorMessage :name="name" as="div" class="components-ui-input__error" />
+    <label class="components-ui-input-label">
+      <span v-if="label" class="components-ui-input-label__span">{{ label }}</span>
+      <Field :name="name" :type="type" class="components-ui-input-label__field" />
+      <ErrorMessage :name="name" as="div" class="components-ui-input-label__error" />
+    </label>
   </div>
 </template>
 
@@ -31,21 +33,27 @@ defineProps({
   display: flex;
   flex-direction: column;
 
-  &__label {
-    font-weight: 600;
-    font-size: 0.8rem;
-  }
+  &-label {
+    display: flex;
+    flex-direction: column;
 
-  &__field {
-    height: 20px;
-    border-radius: 4px;
-    border: 1px solid var(--mb-black);
-  }
+    &__span {
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
 
-  &__error {
-    font-weight: 500;
-    font-size: 0.7rem;
-    color: var(--mb-error);
+    &__field {
+      height: 20px;
+      border-radius: 4px;
+      margin-top: 0.2rem;
+      border: 1px solid var(--mb-black);
+    }
+
+    &__error {
+      font-weight: 500;
+      font-size: 0.7rem;
+      color: var(--mb-error);
+    }
   }
 }
 </style>

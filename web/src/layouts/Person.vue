@@ -10,7 +10,7 @@ import Input from '@/components/ui/Input.vue'
 
     <Input name="birthdate" type="text" label="Data de nascimento" />
 
-    <Input name="phone" type="text" label="Telefone" />
+    <Input name="phone" type="tel" label="Telefone" />
   </div>
 </template>
 

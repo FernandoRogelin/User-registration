@@ -3,17 +3,22 @@ import { ref, computed } from 'vue'
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 
+import { useRegistration } from '@/composables/useRegistration'
 import { registrationSchema, initialValues } from '@/schemas/registrationSchema'
 
-import { FIRST_STEP, LAST_STEP, SECOND_STEP } from '@/constants/steps'
+import { FIRST_STEP, LAST_STEP, SECOND_STEP, THIRD_STEP } from '@/constants/steps'
 
 import Footer from '@/components/common/AppFooter.vue'
 import Header from '@/components/common/AppHeader.vue'
 
+import Company from '@/layouts/Company.vue'
 import Person from '@/layouts/Person.vue'
 import Welcome from '@/layouts/Welcome.vue'
+import Password from '@/layouts/Password.vue'
+import Review from '@/layouts/Review.vue'
 
 const currentStep = ref(FIRST_STEP)
+const { registration } = useRegistration()
 
 const { values, handleSubmit, validateField } = useForm({
   validationSchema: toTypedSchema(registrationSchema),
@@ -33,9 +38,7 @@ function prevStep() {
   if (currentStep.value > FIRST_STEP) currentStep.value--
 }
 
-const submitForm = handleSubmit(async formData => {
-  console.log('Campos válidos', formData)
-})
+const submitForm = handleSubmit(async formData => await registration(formData))
 </script>
 
 <template>
@@ -46,7 +49,10 @@ const submitForm = handleSubmit(async formData => {
       <div class="app-main-content">
         <article class="app-main-content__wrapper">
           <Welcome v-show="currentStep === FIRST_STEP" />
+          <Company v-show="currentStep === SECOND_STEP && isCompany" />
           <Person v-show="currentStep === SECOND_STEP && !isCompany" />
+          <Password v-show="currentStep === THIRD_STEP" />
+          <Review v-show="currentStep === LAST_STEP" :isCompany="isCompany" />
         </article>
 
         <Footer

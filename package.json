@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "npm run build:web && npm run dev:server",
+    "dev": "npm run dev:web && npm run dev:server",
     "dev:web": "npm run dev --prefix web",
     "dev:server": "npm run dev --prefix server",
     "build:web": "npm run build --prefix web"
