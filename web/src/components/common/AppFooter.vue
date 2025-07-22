@@ -1,13 +1,17 @@
 <script setup>
 import { computed } from 'vue'
 
-import { FIRST_STEP, LAST_STEP } from '@/constants/steps'
+import { stepFields, FIRST_STEP, LAST_STEP } from '@/constants/steps'
 
 import Button from '@/components/ui/Button.vue'
 
 const props = defineProps({
   step: {
     type: Number,
+    required: true
+  },
+  personType: {
+    type: String,
     required: true
   },
   nextStep: {
@@ -18,7 +22,7 @@ const props = defineProps({
     type: Function,
     required: true
   },
-  validate: {
+  validateField: {
     type: Function,
     required: true
   }
@@ -29,9 +33,21 @@ const emit = defineEmits(['submit'])
 const isLastStep = computed(() => props.step === LAST_STEP || false)
 
 async function onNextStep() {
-  const { valid } = await props.validate()
+  if (isLastStep.value) return emit('submit')
 
-  if (valid) isLastStep.value ? emit('submit') : props.nextStep()
+  let fieldsToValidate = stepFields[props.step]
+
+  if (typeof fieldsToValidate === 'object' && !Array.isArray(fieldsToValidate)) {
+    fieldsToValidate = fieldsToValidate[props.personType]
+  }
+
+  const validationPromises = fieldsToValidate.map(field => props.validateField(field))
+
+  const results = await Promise.all(validationPromises)
+
+  const isStepValid = results.every(result => result.valid)
+
+  if (isStepValid) props.nextStep()
 }
 </script>
 

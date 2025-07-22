@@ -19,16 +19,18 @@ defineProps({
 
 <template>
   <div class="components-ui-input">
-    <label>
-      <span v-if="label" class="components-ui-input__label">{{ label }}</span>
-      <Field :name="name" :type="type" :id="name" class="components-ui-input__field" />
-      <ErrorMessage :name="name" as="div" class="components-ui-input__error" />
-    </label>
+    <label v-if="label" :for="name" class="components-ui-input__label">{{ label }}</label>
+    <Field :name="name" :type="type" :id="name" class="components-ui-input__field" />
+    <ErrorMessage :name="name" as="div" class="components-ui-input__error" />
   </div>
 </template>
 
 <style scoped lang="scss">
 .components-ui-input {
+  gap: 0.4rem;
+  display: flex;
+  flex-direction: column;
+
   &__label {
     font-weight: 600;
     font-size: 0.8rem;
@@ -36,7 +38,6 @@ defineProps({
 
   &__field {
     height: 20px;
-    margin: 0.4rem 0 0;
     border-radius: 4px;
     border: 1px solid var(--mb-black);
   }

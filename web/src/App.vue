@@ -5,19 +5,20 @@ import { toTypedSchema } from '@vee-validate/zod'
 
 import { registrationSchema, initialValues } from '@/schemas/registrationSchema'
 
-import { FIRST_STEP, LAST_STEP } from '@/constants/steps'
+import { FIRST_STEP, LAST_STEP, SECOND_STEP } from '@/constants/steps'
 
 import Footer from '@/components/common/AppFooter.vue'
 import Header from '@/components/common/AppHeader.vue'
 
+import Person from '@/layouts/Person.vue'
 import Welcome from '@/layouts/Welcome.vue'
 
 const currentStep = ref(FIRST_STEP)
 
-const { values, handleSubmit, validate } = useForm({
+const { values, handleSubmit, validateField } = useForm({
   validationSchema: toTypedSchema(registrationSchema),
   initialValues,
-  validateOnChange: true,
+  validateOnChange: false,
   validateOnBlur: true,
   validateOnMount: false,
 })
@@ -45,13 +46,15 @@ const submitForm = handleSubmit(async formData => {
       <div class="app-main-content">
         <article class="app-main-content__wrapper">
           <Welcome v-show="currentStep === FIRST_STEP" />
+          <Person v-show="currentStep === SECOND_STEP && !isCompany" />
         </article>
 
         <Footer
+          :step="currentStep"
+          :personType="values.personType"
+          :validateField="validateField"
           :nextStep="nextStep"
           :prevStep="prevStep"
-          :step="currentStep"
-          :validate="validate"
         />
       </div>
     </form>
