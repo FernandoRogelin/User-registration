@@ -33,6 +33,8 @@ const emit = defineEmits(['submit'])
 const isLastStep = computed(() => props.step === LAST_STEP || false)
 
 async function onNextStep() {
+  if (isLastStep.value) return emit('submit')
+
   let fieldsToValidate = stepFields[props.step]
 
   if (typeof fieldsToValidate === 'object' && !Array.isArray(fieldsToValidate)) {
@@ -44,8 +46,6 @@ async function onNextStep() {
   const results = await Promise.all(validationPromises)
 
   const isStepValid = results.every(result => result.valid)
-
-  if (isLastStep.value) return emit('submit')
 
   if (isStepValid) props.nextStep()
 }
