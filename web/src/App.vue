@@ -24,7 +24,7 @@ const { registration, response } = useRegistration()
 const { values, handleSubmit, validateField } = useForm({
   validationSchema: toTypedSchema(registrationSchema),
   initialValues,
-  validateOnChange: false,
+  validateOnChange: true,
   validateOnBlur: true,
   validateOnMount: false,
 })

@@ -1,25 +1,6 @@
 import { z } from "zod"
 
-export const initialValues = {
-  // Step 1
-  email: '',
-  personType: 'person',
-
-  // Step 2
-  name: '',
-  cpf: '',
-  birthdate: '',
-  phone: '',
-
-  // Step 2
-  companyName: '',
-  cnpj: '',
-  openingDate: '',
-  companyPhone: '',
-
-  // Step 3
-  password: ''
-}
+export const initialValues = { personType: 'person' }
 
 const errorMessages = {
   required: 'Campo obrigatório!',
@@ -38,7 +19,7 @@ const personSchema = z.object({
   name: z.string({ required_error: errorMessages.required }),
   cpf: z.string({ required_error: errorMessages.required }),
   birthdate: z.string({ required_error: errorMessages.required }),
-}).required()
+})
 
 const companySchema = z.object({
   personType: z.literal('company'),
@@ -47,6 +28,6 @@ const companySchema = z.object({
   companyName: z.string({ required_error: errorMessages.required }),
   cnpj: z.string({ required_error: errorMessages.required }),
   openingDate: z.string({ required_error: errorMessages.required }),
-}).required()
+})
 
 export const registrationSchema = z.discriminatedUnion('personType', [ personSchema, companySchema ])
