@@ -7,7 +7,7 @@ export const stepFields = {
   1: ['email', 'personType'],
   2: {
     person: ['name', 'cpf', 'birthdate', 'phone'],
-    company: ['companyName', 'cnpj', 'openingDate', 'phone']
+    company: ['companyName', 'cnpj', 'openingDate', 'companyPhone']
   },
   3: ['password']
 }
