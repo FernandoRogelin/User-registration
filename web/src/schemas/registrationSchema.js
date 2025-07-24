@@ -33,7 +33,7 @@ const personSchema = z.object({
   cpf: cpfSchema,
   phone: phoneSchema,
   birthdate: dateSchema,
-  name: z.string({ required_error: errorMessages.required }),
+  name: z.string({ required_error: errorMessages.required }).nonempty({ message: errorMessages.required }),
 })
 
 const companySchema = z.object({
@@ -42,7 +42,7 @@ const companySchema = z.object({
   cnpj: cnpjSchema,
   openingDate: dateSchema,
   companyPhone: phoneSchema,
-  companyName: z.string({ required_error: errorMessages.required }),
+  companyName: z.string({ required_error: errorMessages.required }).nonempty({ message: errorMessages.required }),
 })
 
 export const registrationSchema = z.discriminatedUnion('personType', [ personSchema, companySchema ])
