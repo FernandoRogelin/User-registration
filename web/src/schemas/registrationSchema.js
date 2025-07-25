@@ -11,7 +11,7 @@ const errorMessages = {
 }
 
 const commonFields = {
-  password: z.string({ required_error: errorMessages.required }),
+  password: z.string({ required_error: errorMessages.required }).nonempty({ message: errorMessages.required }),
   email: z.string({ required_error: errorMessages.required }).email({ message: errorMessages.email }),
 }
 
@@ -19,7 +19,7 @@ const phoneSchema = z.string({ required_error: errorMessages.required })
   .refine(isValidPhone, { message: 'Formato de telefone inválido. Ex: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX' })
 
 const dateSchema = z.string({ required_error: errorMessages.required })
-  .refine(isValidDate, { message: 'Data inválida. Ex: XX/XX/XXX' })
+  .refine(isValidDate, { message: 'Data inválida. Ex: XX/XX/XXXX' })
 
 const cpfSchema = z.string({ required_error: errorMessages.required })
   .refine(isValidCPF, { message: 'CPF inválido! Ex: xxx.xxx.xxx-xx' })
