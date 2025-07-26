@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<Input /> ui component > should render button component and match snapshot 1`] = `
+<div
+  class="components-ui-input"
+  data-v-fcd0ab8f=""
+>
+  <label
+    class="components-ui-input-label"
+    data-v-fcd0ab8f=""
+  >
+    <span
+      class="components-ui-input-label__span"
+      data-v-fcd0ab8f=""
+    >
+      Input component
+    </span>
+    <input
+      class="components-ui-input-label__field"
+      data-v-fcd0ab8f=""
+      name="email"
+      type="text"
+    />
+    <!---->
+  </label>
+</div>
+`;

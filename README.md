@@ -53,3 +53,11 @@ npm run start
 ```
 
 #### O comando será responsável por rodar o build do projeto web e logo após rodar o servidor node em `localhost:3000`
+
+# Rodando os testes
+
+#### Na pasta raiz do sistema, roda o seguinte comando:
+
+```bash
+npm run test:web
+```
