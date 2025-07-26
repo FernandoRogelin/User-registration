@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<AppFooter /> common component > should render component and match snapshot 1`] = `
+<footer
+  class="components-common-app-footer"
+  data-v-add55efe=""
+>
+  <!--v-if-->
+  <button
+    class="components-ui-button components-ui-button--primary"
+    data-v-add55efe=""
+    data-v-e3216c45=""
+    type="button"
+  >
+    
+    Continuar
+    
+  </button>
+</footer>
+`;

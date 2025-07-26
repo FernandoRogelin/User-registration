@@ -1,7 +1,7 @@
 import { describe, expect, test, afterEach } from "vitest"
 import { render, screen, cleanup } from "@testing-library/vue"
 
-import AppHeader from "../common/AppHeader.vue"
+import AppHeader from "@/components/common/AppHeader.vue"
 
 import { FIRST_STEP, LAST_STEP, SECOND_STEP, THIRD_STEP } from "@/constants/steps"
 
