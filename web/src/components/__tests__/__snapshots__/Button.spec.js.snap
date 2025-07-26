@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<Button /> ui component > should render button component and match snapshot 1`] = `
+<button
+  class="components-ui-button components-ui-button--primary"
+  data-v-e3216c45=""
+>
+  
+  Button component
+  
+</button>
+`;

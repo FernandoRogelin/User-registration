@@ -17,6 +17,6 @@ describe('<Response /> common component', () => {
   test('should render message', () => {
     render(Response, { props: mockProps })
 
-    expect(screen.getByText(/Response component/i))
+    expect(screen.getByText(/Response component/i)).toBeInTheDocument()
   })
 })
