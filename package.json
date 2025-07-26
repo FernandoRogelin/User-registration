@@ -9,7 +9,8 @@
     "dev": "concurrently --kill-others \"npm run dev:web\" \"npm run dev:server\"",
     "dev:web": "npm run dev --prefix web",
     "dev:server": "npm run dev --prefix server",
-    "build:web": "npm run build --prefix web"
+    "build:web": "npm run build --prefix web",
+    "test:web": "npm run test:unit --prefix web"
   },
   "repository": {
     "type": "git",
