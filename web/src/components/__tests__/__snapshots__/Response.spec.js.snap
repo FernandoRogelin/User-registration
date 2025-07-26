@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<Response /> common component > should render component and match snapshot 1`] = `
+<div
+  class="components-common-response"
+  data-v-154c7870=""
+>
+  <span
+    class="components-common-response__message"
+    data-v-154c7870=""
+  >
+    Response component
+  </span>
+</div>
+`;

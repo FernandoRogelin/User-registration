@@ -5,8 +5,6 @@ import AppFooter from "@/components/common/AppFooter.vue"
 
 import { FIRST_STEP, SECOND_STEP } from "@/constants/steps"
 
-afterEach(() => cleanup())
-
 const nextStep = vi.fn()
 const prevStep = vi.fn()
 const validateField = vi.fn()
@@ -18,6 +16,8 @@ const mockProps = {
   prevStep,
   validateField
 }
+
+afterEach(() => cleanup())
 
 describe('<AppFooter /> common component', () => {
   test('should render component and match snapshot', () => {

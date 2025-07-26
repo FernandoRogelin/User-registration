@@ -9,7 +9,7 @@ afterEach(() => cleanup())
 
 describe('<AppHeader /> common component', () => {
   test('should render the component and match snapshot', () => {
-    const { container } = render(AppHeader)
+    const { container } = render(AppHeader, { props: { step: FIRST_STEP } })
 
     expect(container.firstChild).toMatchSnapshot()
   })

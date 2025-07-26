@@ -13,12 +13,16 @@ exports[`<AppHeader /> common component > should render the component and match 
     <span
       class="components-common-appHeader-step__number"
       data-v-1820f6ff=""
-    />
+    >
+      1
+    </span>
      de 4 
   </p>
   <h1
     class="components-common-appHeader-title"
     data-v-1820f6ff=""
-  />
+  >
+    Seja bem-vindo(a)
+  </h1>
 </header>
 `;
